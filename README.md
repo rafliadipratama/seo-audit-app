@@ -1,66 +1,123 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SEO Audit App
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A **web‑based SEO auditing tool** built with [Laravel 10](https://laravel.com) to help small and medium businesses diagnose and improve their on‑page search‑engine optimisation. The app analyses technical, content, and performance signals, then returns clear recommendations that non‑technical users can act on.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Key Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| Feature                                     | What it does & why it matters                                                                                           |
+| ------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **Image `alt`‑text audit**                  | Flags images missing descriptive `alt` text so visually‑impaired visitors and search crawlers understand every graphic. |
+| **SEO‑friendly URL structure check**        | Detects overly long, dynamic, or keyword‑stuffed URLs and recommends concise slugs.                                     |
+| **Page Speed Insights (Google Lighthouse)** | Pulls real‑time scores via the PageSpeed API and highlights slow resources.                                             |
+| **Mobile‑friendliness analysis**            | Screens for viewport issues and uncrawlable mobile content.                                                             |
+| **Keyword‑density report**                  | Calculates focus‑keyword density on each page and warns of over‑ or under‑optimisation.                                 |
+| **Role‑based dashboards**                   | Separate admin & user portals using **Laravel Breeze** authentication scaffolding.                                      |
+| **Export to PDF & CSV**                     | One‑click export of audit results for clients or teammates.                                                             |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Quick Start
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+* PHP ≥ 8.2 & Composer
+* Node.js ≥ 18 & npm
+* MySQL / MariaDB (or any DB supported by Laravel)
+* Google PageSpeed API key (optional but recommended)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Installation
 
-## Laravel Sponsors
+```bash
+# 1 Clone the repo
+$ git clone https://github.com/rafliadipratama/seo-audit-app.git
+$ cd seo-audit-app
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# 2 Install backend dependencies
+$ composer install --no-dev --optimize-autoloader
 
-### Premium Partners
+# 3 Install frontend dependencies & compile assets
+$ npm install && npm run build # or `npm run dev` for hot‑reload
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# 4 Configure environment
+$ cp .env.example .env
+$ php artisan key:generate
+# Update DB_*, PAGESPEED_API_KEY, etc. in .env
 
-## Contributing
+# 5 Run migrations & seeders
+$ php artisan migrate --seed
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# 6 Serve the app
+$ php artisan serve
+```
 
-## Code of Conduct
+Browse to **[http://127.0.0.1:8000](http://127.0.0.1:8000)** and log in with the seeded admin account.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## 🧩 Project Structure
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
+seo-audit-app/
+├─ app/        # Laravel MVC code
+├─ resources/  # Blade views & Vue components
+├─ database/   # Migrations & seeders
+├─ public/     # Compiled assets (Vite)
+└─ tests/      # Pest unit & feature tests
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔐 Environment Variables (.env)
+
+| Key                 | Example value       | Description                                  |
+| ------------------- | ------------------- | -------------------------------------------- |
+| `APP_NAME`          | `SEO Audit App`     | App name displayed in UI                     |
+| `PAGESPEED_API_KEY` | `AIzaSy...`         | Google PageSpeed Insights API key            |
+| `DB_CONNECTION`     | `mysql`             | Database driver                              |
+| `DB_DATABASE`       | `seo_audit`         | Database name                                |
+| `ADMIN_EMAIL`       | `admin@example.com` | Default admin login                          |
+| `ADMIN_PASSWORD`    | `secret`            | Default admin password (hashed on first run) |
+
+---
+
+## 🧪 Running Tests
+
+```bash
+php artisan test  # runs all Pest tests
+```
+
+---
+
+## 📦 Deployment
+
+1. Push to `main` (CI pipeline builds assets & runs tests).
+2. Set up environment variables on production server.
+3. Run `php artisan migrate --force` after every release.
+
+> **Tip:** Use Laravel Forge or Ploi for zero‑downtime deploys.
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! Please open an issue first to discuss major changes.
+
+1. Fork the repo & create your branch: `git checkout -b feature/my-feature`
+2. Commit your changes with clear messages.
+3. Push the branch & open a PR.
+
+All contributions must pass CI and follow the [PSR‑12](https://www.php-fig.org/psr/psr-12/) coding standard.
+
+---
+
+## 🛡️ Security Vulnerabilities
+
+If you discover a security issue, please e‑mail **Mohamad Rafli Adipratama** at `rafliadipratama@gmail.com`. Do **not** post it in the public issue tracker.
+
+---
+
+## 📜 License
+
+This project is open‑source software licensed under the [MIT License](LICENSE).
